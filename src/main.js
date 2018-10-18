@@ -9,8 +9,18 @@ import MintUi from 'mint-ui';
 import 'mint-ui/lib/style.css';
 //引入mui
 import './assets/mui/css/mui.css';
+import './assets/mui/css/icons-extra.css';
+import './assets/mui/fonts/mui-icons-extra.ttf';
+
+import VueRouter from 'vue-router';
+//引入router文件配置
+import router from './router/index';
+//引入vue-resource 连接服务器
+import VueResource from 'vue-resource';
+Vue.use(VueResource);
 
 Vue.use(MintUi);
+Vue.use(VueRouter);
 
 
 Vue.config.productionTip = false
@@ -22,5 +32,6 @@ new Vue({
     App
   },
   template: '<App/>',
+  router,
   
 })
