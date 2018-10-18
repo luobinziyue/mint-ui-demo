@@ -7,6 +7,8 @@ import App from './App';
 //mint-ui 只在vue中使用，专为vue定制
 import MintUi from 'mint-ui';
 import 'mint-ui/lib/style.css';
+//引入mui
+import './assets/mui/css/mui.css';
 
 Vue.use(MintUi);
 
