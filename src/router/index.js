@@ -12,7 +12,7 @@ import geiImage from '../components/imageslist/getimages';
 import imageinfo from '../components/imageslist/imageinfo';
 
 import products from '@/components/products/productslist';
-import goodsinfo from '@/components/prducts/goodsinfo'
+import goodsinfo from '@/components/products/goodsinfo'
 
 
 var router = new VueRouter({
@@ -27,6 +27,8 @@ var router = new VueRouter({
         {path:'/home/imageslist',component:geiImage},
         {path:'/home/imageslist/:id',component:imageinfo},
         {path:'/homo/productslist',component:products},
+        {path:'/home/goodsinfo/:id',component:goodsinfo,name:'goodsinfo'}
+
     ],
     linkActiveClass:'mui-active',
     // 覆盖默认的路由高亮的类，默认的类叫做 router-link-active

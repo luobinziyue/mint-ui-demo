@@ -1,12 +1,7 @@
 <template>
     <div>
         <!-- 轮播图区域 这样用vue语法，注意src要绑定-->
-        <mt-swipe :auto="3000" scoped>
-            <mt-swipe-item v-for="(item,index) in list" :key="index">
-                <img v-bind:src="item.img" alt="">
-            </mt-swipe-item>
-           
-        </mt-swipe>
+        <swiper :swipe="list"></swiper>        
 
         <!-- 九宫格到六宫格的改造 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -45,20 +40,22 @@
                     <img src="../../assets/images/menu6.png" alt="">
                     <div class="mui-media-body">联系我们</div>
                 </a>
-            </li>
-            
+            </li>            
         </ul>
-
     </div>
     
 </template>
 <script>
+import swiper from "./swiper";
 export default {
-    //往自己组件内部挂载一些私有数据
+  //往自己组件内部挂载一些私有数据
   data() {
     return {
-      list: [] //保存轮播图的数组
+        list: [] //保存轮播图的数组
     };
+  },
+  components: {
+    swiper
   },
   methods: {
     // getSwipe() {
@@ -72,13 +69,14 @@ export default {
     //   });
     // }
     getSwipe() {
-        this.$http.get('http://027xin.com:8899/api/getlunbo').then(result=>{
-            if(result.body.status == 0) {
-                this.list = result.body.message;
-            }else{
-                console.log('获取资源失败');
-            }
-        })
+      this.$http.get("http://027xin.com:8899/api/getlunbo").then(result => {
+          console.log(result);
+        if (result.body.status == 0) {
+          this.list = result.body.message;
+        } else {
+          console.log("获取资源失败");
+        }
+      });
     }
   },
   created() {
@@ -87,37 +85,18 @@ export default {
 };
 </script>
 <style lang="less">
-// 轮播图
-.mint-swipe {
-  height: 200px;
-  .mint-swipe-item {
-    &:first-of-type {
-      background-color: pink;
-    }
-    &:nth-child(2) {
-      background-color: skyblue;
-    }
-    &:last-of-type {
-      background-color: lightblue;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
-}
 
 //九宫格/六宫格
-.mui-grid-view.mui-grid-9 {    
-    background-color: #fff;
+.mui-grid-view.mui-grid-9 {
+  background-color: #fff;
+  border: none;
+  .mui-table-view-cell {
     border: none;
-    .mui-table-view-cell {
-        border: none;
-        img {
-            width: 60px;
-            height: 60px;
-        }
+    img {
+      width: 60px;
+      height: 60px;
     }
+  }
 }
 </style>
 

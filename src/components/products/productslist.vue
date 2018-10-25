@@ -5,18 +5,18 @@
       :bottom-method="loadBottom" :autoFill='false'  
       ref="loadmore">
         <div class="goodList">
-          <div class="list" v-for="item in goodsList" :key="item.id">
-            <a href="#" class="description">
+          <div class="list" v-for="item in goodsList" :key="item.id" @click="getInfo(item.id)">
+            <div href="#" class="description" >
                 <img  :src="item.img_url">
                 <h3 >{{item.title}}</h3 >
-            </a>
+            </div>
             <div class="price">
                 <span class="now">￥{{item.sell_price}}</span>
                 <span class="old">￥{{item.market_price}}</span>
             </div>
             <p class="sell">
                 <span>热卖中</span>
-                <span>剩60件</span>
+                <span>剩{{item.stock_quantity}}件</span>
             </p>
         </div>
         </div>
@@ -69,6 +69,12 @@ export default {
       console.log("上拉");
       this.pagesize++;
       this.getgoods();
+    },
+    //跳转到商品详情页
+    //编程式导航，这里命名了path的话，params会被忽略，所以用了name
+    getInfo(goodsId) {
+      console.log(this);
+      this.$router.push({name:'goodsinfo',params:{id:goodsId}})
     }
   },
   created() {
@@ -137,4 +143,13 @@ export default {
     }
   }
 }
+
+
+/**在网页中有两种跳转方式，
+1.a标签跳转
+2.window.location.href 编程式导航
+
+$route,获取路由中参数
+$router,是一个路由导航对象，用它可以方便的使用js代码，实现路由的前进后退
+*/
 </style>
